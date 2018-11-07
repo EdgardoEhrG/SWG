@@ -1,2 +1,1 @@
-# SWG
-Star Wars Guide (React.js + API)
+# Star Wars Guidebook (React.js + API)
