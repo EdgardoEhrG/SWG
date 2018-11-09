@@ -1,33 +1,73 @@
 import React, { Component } from 'react';
 
+/* API */
+import SwapiServices from "../../services/swapi.ts";
+
+/* Components */
+import Loader from "../loader/loader";
+import PlanetView from "./planet-view";
+import ErrorIndicator from "../error-indicator/error-indicator";
+
 /* Styles */
-import './random-planet.scss';
+import "./random-planet.scss";
 
 export default class RandomPlanet extends Component {
-  render() {
-    return (
-        <div className="random-planet jumbotron rounded">
-                <img className="planet-image"
-                            src="https://starwars-visualguide.com/assets/img/planets/5.jpg"
-                            alt="planet" />
-            <div>
-                <h4>Planet Name</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <span className="term">Population</span>
-                        <span>123124</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Rotation Period</span>
-                        <span>43</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Diameter</span>
-                        <span>100</span>
-                    </li>
-                </ul>
+
+    /* State */
+
+    state = {
+        planet: {},
+        loading: true,
+        error: false
+    }
+
+    /* Data */
+
+    swapiServices = new SwapiServices();
+
+    constructor() {
+        super();
+        this.updatePlanet();
+    }
+
+    onPlanetLoaded = (planet) => {
+        this.setState({
+            planet,
+            loading: false
+        });
+    }
+
+    updatePlanet() {
+        const id = Math.floor(Math.random()*25);
+        this.swapiServices.getPlanet(id)
+                .then(this.onPlanetLoaded)
+                .catch(this.onError);
+    }
+
+    onError = (error) => {
+        this.setState({
+            error: true,
+            loading: false
+        })
+    }
+
+    /* Render */
+
+    render() {
+
+        const { planet, loading, error } = this.state;
+
+        const loader = (loading) ? <Loader /> : null;
+        const hasData = !(loading || error);
+        const content = (hasData) ? <PlanetView planet={planet} /> : null;
+        const errorMessage = (error) ? <ErrorIndicator /> : null;
+
+        return (
+            <div className="random-planet jumbotron rounded">
+                { errorMessage }
+                { loader }
+                { content }
             </div>
-        </div>
-    );
-  }
+        )
+    }
 }

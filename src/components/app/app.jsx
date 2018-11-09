@@ -13,7 +13,7 @@ import './app.scss';
 export default class App extends Component {
     render() {
         return (
-            <div>
+            <div className="app">
                 <AppHeader />
                 <RandomPlanet />
                 <div className="row mb2">
