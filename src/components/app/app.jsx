@@ -4,11 +4,10 @@ import React, { Component } from 'react';
 
 import AppHeader from '../app-header/app-header';
 import RandomPlanet from '../random-planet/random-planet';
-import List from '../list/list';
-import PersonDetails from '../person-details/person-details';
 
 /* Styles*/
 import './app.scss';
+import PeoplePage from '../people-page/people-page';
 
 export default class App extends Component {
     render() {
@@ -16,14 +15,7 @@ export default class App extends Component {
             <div className="app">
                 <AppHeader />
                 <RandomPlanet />
-                <div className="row mb2">
-                    <div className="col-md-6">
-                        <List />
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails />
-                    </div>
-                </div>
+                <PeoplePage />
             </div>
         )
     }
