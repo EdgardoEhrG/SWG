@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 
 import AppHeader from '../app-header/app-header';
 import RandomPlanet from '../random-planet/random-planet';
+import PeoplePage from '../people-page/people-page';
+import PlanetPage from "../planet-page/planet-page";
+// import StarshipsPage from '../starships-page/starships-page';
 
 /* Styles*/
 import './app.scss';
-import PeoplePage from '../people-page/people-page';
 
 export default class App extends Component {
     render() {
@@ -16,6 +18,8 @@ export default class App extends Component {
                 <AppHeader />
                 <RandomPlanet />
                 <PeoplePage />
+                <PlanetPage />
+                {/* <StarshipsPage /> */}
             </div>
         )
     }

@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 /* Styles */
 import './list.scss';
 
-/* Service */
-import SwapiService from "../../services/swapi.ts";
-
 /* Components */
 import Loader from "../loader/loader";
 
@@ -14,33 +11,33 @@ export default class List extends Component {
   /* State */
 
   state = {
-    peopleList: null
+    itemList: null
   }
-
-  /* Data */
-
-  swapiService = new SwapiService();
 
   /* Life Cycles */
 
   componentDidMount() {
-    this.swapiService
-        .getAllPeople()
-        .then((peopleList) => { this.setState({
-            peopleList
-          });
+
+    const { getData } = this.props;
+
+    getData()
+      .then((itemList) => { this.setState({
+          itemList
         });
+      });
   }
 
   /* Events */
 
   renderItems(arr) {
-    const { onPersonSelected } = this.props;
-    return arr.map(({id, name}) => {
+    const { onItemSelected } = this.props;
+    return arr.map((item) => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
       return (
         <li className="list-group-item"
             key={id}
-            onClick={() => onPersonSelected(id)}>{name}
+            onClick={() => onItemSelected(id)}>{label}
         </li>
       )
     });
@@ -50,13 +47,13 @@ export default class List extends Component {
 
   render() {
 
-    const { peopleList } = this.state;
+    const { itemList } = this.state;
 
-    if (!peopleList) {
+    if (!itemList) {
       return <Loader />
     }
 
-    const items = this.renderItems(peopleList);
+    const items = this.renderItems(itemList);
 
     return (
         <ul className="item-list list-group">

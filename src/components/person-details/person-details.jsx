@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import SwapiService from "../../services/swapi.ts";
 
 /* Styles */
-import './person-details.scss';
+import './person-details.scss'; 
 
 export default class PersonDetails extends Component {
 
@@ -15,7 +15,7 @@ export default class PersonDetails extends Component {
     /* State */
 
     state = {
-        person: null,
+        person: null
     }
 
     /* LifeCycles */

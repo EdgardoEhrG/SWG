@@ -12,32 +12,32 @@ export default class SwapiService {
         return await responce.json();
     }
 
-    async getAllPeople() {
+    getAllPeople = async () => {
         const res = await this.getResource(`/people/`);
         return res.results.map(this.transformPerson);
     }
 
-    async getAllStartships() {
+    getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
         return res.results.map(this.transformStarship);
     }
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
         return res.results.map(this.transformPlanet);
     }
 
-    async getPerson(id: number) {
+    getPerson = async (id: number) => {
         const person = await this.getResource(`/people/${id}/`);
         return this.transformPerson(person);
     }
 
-    async getStartship(id: number) {
+    getStarship = async (id: number) => {
         const starship = await this.getResource(`/starships/${id}/`);
         return this.transformStarship(starship);
     }
 
-    async getPlanet(id: number) {
+    getPlanet = async (id: number) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this.transformPlanet(planet);
     }
