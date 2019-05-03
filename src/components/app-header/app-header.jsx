@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 /* Styles */
 import './app-header.scss';
 
@@ -8,17 +10,17 @@ export default class AppHeader extends Component {
         return (
             <div className="header d-flex">
                 <h3>
-                    <a href="#id">Star Wars Guide</a>
+                    <Link to="/">Star Wars Guide</Link>
                 </h3>
                 <ul className="d-flex">
                     <li>
-                        <a href="#id">People</a>
+                        <Link to="/people">People</Link>
                     </li>
                     <li>
-                        <a href="#id">Planets</a>
+                        <Link to="/planets">Planets</Link>
                     </li>
                     <li>
-                        <a href="#id">Starships</a>
+                        <Link to="/starships">Starships</Link>
                     </li>
                 </ul>
             </div>
