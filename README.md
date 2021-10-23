@@ -1,17 +1,14 @@
 # SWG
 
-Star Wars Guidebook
+> React
 
-> React.js
-
-> TypeScript
+> JS | TypeScript
 
 > Sass (SCSS)
 
-# ToDo
+## Useful elements
 
-* New structure
-* Refactorin' components
-* Fixin' React-Router
-* Usin' compose()
-
+- [ ] React old style
+- [ ] ErrorBoundry component
+- [ ] Loader component
+- [ ] Service
